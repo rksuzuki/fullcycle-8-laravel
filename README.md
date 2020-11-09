@@ -1,1 +1,1 @@
-https://hub.docker.com/u/rksuzuki
+https://hub.docker.com/r/rksuzuki/publicando-imagem-laravel
