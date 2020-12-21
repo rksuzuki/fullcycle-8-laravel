@@ -1,11 +1,5 @@
 FROM php:7.4.10-fpm-alpine3.12
 
-<<<<<<< HEAD
-RUN apk add bash mysql-client
-RUN docker-php-ext-install pdo pdo_mysql
-RUN apk add --no-cache shadow
-
-=======
 RUN apk add --no-cache openssl bash mysql-client
 RUN docker-php-ext-install pdo pdo_mysql
 RUN apk add --no-cache shadow
@@ -15,21 +9,18 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
->>>>>>> configurando cloudbuild
 WORKDIR /var/www
 RUN rm -rf /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-<<<<<<< HEAD
-=======
 # RUN composer install && \
 #             cp .env.example .env && \
 #             php artisan key:generate && \
 #             php artisan config:cache
 
 # COPY . /var/www
->>>>>>> configurando cloudbuild
+
 RUN chown -R www-data:www-data /var/www
 
 RUN ln -s public html
