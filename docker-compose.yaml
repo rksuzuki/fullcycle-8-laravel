@@ -1,13 +1,27 @@
 version: '3'
 
 services:
+<<<<<<< HEAD
   app:
     build: .
     container_name: app
+=======
+
+  app:
+    build: .
+    container_name: app
+    # entrypoint: dockerize -template ./.docker/app/.env:.env -wait tcp://db:3306 -timeout 120s ./.docker/entrypoint.sh
+    # environment:
+    #   - DB_HOST=db
+    #   - DB_DATABASE=laravel
+    #   - DB_USERNAME=root
+    #   - DB_PASSWORD=root
+>>>>>>> configurando cloudbuild
     volumes:
       - .:/var/www
     networks:
       - app-network
+<<<<<<< HEAD
 
   db:
     build: .docker/mysql
@@ -25,6 +39,11 @@ services:
       - MYSQL_USER=root
     networks:
       - app-network
+=======
+    depends_on:
+      - db
+      - redis
+>>>>>>> configurando cloudbuild
 
   nginx:
     build: .docker/nginx
@@ -37,6 +56,11 @@ services:
       - .:/var/www
     networks:
       - app-network
+<<<<<<< HEAD
+=======
+    depends_on:
+      - app
+>>>>>>> configurando cloudbuild
 
   redis:
     image: redis:alpine
@@ -45,6 +69,30 @@ services:
     networks:
       - app-network
 
+<<<<<<< HEAD
 networks:
   app-network:
     driver: bridge
+=======
+  db:
+    build: .docker/mysql
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+      driver: bridge
+>>>>>>> configurando cloudbuild

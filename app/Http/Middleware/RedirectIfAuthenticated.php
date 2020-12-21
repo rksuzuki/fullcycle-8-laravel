@@ -4,7 +4,10 @@ namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
+=======
+>>>>>>> configurando cloudbuild
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
@@ -17,7 +20,11 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return mixed
      */
+<<<<<<< HEAD
     public function handle(Request $request, Closure $next, ...$guards)
+=======
+    public function handle($request, Closure $next, ...$guards)
+>>>>>>> configurando cloudbuild
     {
         $guards = empty($guards) ? [null] : $guards;
 
